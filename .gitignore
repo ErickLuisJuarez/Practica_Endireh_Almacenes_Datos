@@ -1,0 +1,20 @@
+# Datos crudos: NUNCA se suben al repo (se entregan por separado)
+data/data-raw/*
+!data/data-raw/.gitkeep
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Cachés de Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema operativo / editores
+.DS_Store
+.vscode/
+.idea/
