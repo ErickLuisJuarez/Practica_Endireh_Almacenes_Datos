@@ -55,4 +55,7 @@ desempeño frente a `pandas` en datasets medianos/grandes en una sola máquina,
 manteniendo una sintaxis muy similar.
 
 ## Autor(es)
-- Equipo: *(completar nombres del equipo)*
+- Equipo: Erick Luis Juárez
+          Julio Alejandro Herrera Avalos
+          Luis Marios Solares Ramos
+          Cesar Candelario Fuentes Anica
