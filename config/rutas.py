@@ -11,4 +11,10 @@ RUTA_DATA_MODEL = RUTA_DATA / "data-model"
 
 # Nombre del archivo crudo del dataset, tal como fue entregado por la cátedra
 ARCHIVO_ENDIREH_RAW = "Erick Luis Juárez - endireh_ml_dataset_texto_fecha.csv"
-ARCHIVO_ENDIREH_PROCESSED = "endireh_2021_procesado.parquet"
+
+#Nombre del archivo ya limpi
+ARCHIVO_ENDIREH_LIMPIO = "endireh_2021_limpio.csv"
+
+RUTA_REPORTS = RUTA_BASE / "reports"
+RUTA_REPORTS_FIGURES = RUTA_REPORTS / "figures"
+

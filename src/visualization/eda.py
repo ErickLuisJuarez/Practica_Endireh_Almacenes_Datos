@@ -53,3 +53,24 @@ def calcular_medidas_variabilidad(df: pl.DataFrame, columna: str, grupo_label: s
         "CV_%": cv,
         "IQR": iqr
     }
+
+def calcular_media_ponderada(df: pl.DataFrame, columna: str, columna_peso: str = "factor_expansion") -> float:
+    """
+    Calcula la media ponderada de columna usando columna_peso filtrando nulos de columna antes del cálculo
+    """
+    df_valido = df.drop_nulls(subset=[columna])
+    valores = df_valido[columna].to_numpy()
+    pesos = df_valido[columna_peso].to_numpy()
+    return float(np.average(valores, weights=pesos))
+
+def calcular_mediana_ponderada(df: pl.DataFrame, columna: str, columna_peso: str = "factor_expansion") -> float:
+    """
+    Calcula la mediana ponderada de columna usando columna_peso
+    """
+    df_valido = df.drop_nulls(subset=[columna]).sort(columna)
+    valores = df_valido[columna].to_numpy()
+    pesos = df_valido[columna_peso].to_numpy()
+    acumulado = np.cumsum(pesos)
+    mitad = acumulado[-1] / 2
+    idx = np.searchsorted(acumulado, mitad)
+    return float(valores[idx])

@@ -4,6 +4,23 @@ def eliminar_duplicados(df: pl.DataFrame) -> pl.DataFrame:
     """Elimina filas duplicadas exactas."""
     return df.unique(keep="first", maintain_order=True)
 
+def corregir_codificacion_texto(df: pl.DataFrame, columnas: list[str]) -> pl.DataFrame:
+    """
+    Corrige errores de codificación (mojibake) en columnas de texto
+    """
+    def _reparar(valor):
+        if valor is None:
+            return None
+        try:
+            return valor.encode("latin-1").decode("utf-8")
+        except (UnicodeDecodeError, UnicodeEncodeError):
+            return valor  # si no tiene el patrón de mojibake, se deja igual
+
+    return df.with_columns([
+        pl.col(c).map_elements(_reparar, return_dtype=pl.Utf8).alias(c)
+        for c in columnas
+    ])
+
 def limpiar_valores_centinela(df: pl.DataFrame) -> pl.DataFrame:
     """
     Recodifica valores centinela/códigos especiales del INEGI a nulos (None).
